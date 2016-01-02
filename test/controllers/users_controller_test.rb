@@ -17,6 +17,12 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should redirect show when shown user is not activated" do
+    @user.toggle!(:activated)
+    get :show, id: @user
+    assert_redirected_to root_url
+  end
+
   test "should redirect edit when not logged in" do
     get :edit, id: @user
     assert_not flash.empty?
