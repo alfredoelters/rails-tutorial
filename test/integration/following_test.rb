@@ -59,7 +59,7 @@ class FollowingTest < ActionDispatch::IntegrationTest
     @user.feed.paginate(page: 1).each do |micropost|
       assert_match CGI.escapeHTML("micropost-#{micropost.id}"), response.body
       assert_match CGI.escapeHTML(micropost.user.name), response.body
-      assert_match CGI.escapeHTML(micropost.content), response.body
+      assert_match(auto_link_tags(micropost.content), response.body)
     end
   end
 end
