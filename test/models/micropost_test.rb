@@ -50,7 +50,7 @@ class MicropostTest < ActiveSupport::TestCase
 
   test "microposts with the same tag should be linked to it" do
     micropost = Micropost.create(content: "This is a #tag", user: users(:michael))
-    other_micropost = Micropost.new(content: "I love this #tag", user: users(:michael))
+    other_micropost = Micropost.new(content: "I love this #TaG", user: users(:michael))
     yet_other_micropost = Micropost.new(content: "I would like to use a #tag", user: users(:michael))
     assert_no_difference "Tag.count" do
       other_micropost.save

@@ -23,7 +23,7 @@ class Micropost < ActiveRecord::Base
     # if they don't exist already
     def extract_tags
       extract_hashtags(content) do |tag|
-        extracted_tag = Tag.find_or_create_by(name: tag)
+        extracted_tag = Tag.find_or_create_by(name: tag.downcase)
         self.tags << extracted_tag unless tags.include? extracted_tag
       end
     end
